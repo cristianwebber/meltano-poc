@@ -1,13 +1,33 @@
 version: 1
 default_environment: dev
-project_id: ebfb9eb2-3997-490a-8176-00749c2eb995
+project_id: 614311bd-be97-493f-a516-fcb9f89d8788
 plugins:
   extractors:
-  - name: tap-covid-19
-    namespace: tap_covid_19
-    pip_url: tap-covid-19
-    executable: tap-covid-19
+  - name: tap-gitlab
+    variant: meltanolabs
+    pip_url: git+https://github.com/MeltanoLabs/tap-gitlab.git
+  loaders:
+  - name: target-postgres
+    variant: transferwise
+    pip_url: pipelinewise-target-postgres
 environments:
 - name: dev
+  config:
+    plugins:
+      extractors:
+      - name: tap-gitlab
+        config:
+          projects: meltano/meltano
+          start_date: '2022-06-01T00:00:00Z'
+        select:
+        - tags.*
+      loaders:
+      - name: target-postgres
+        config:
+          host: "172.17.0.2"
+          port: 5432
+          user: meltano
+          password: meltano
+          dbname: warehouse
 - name: staging
 - name: prod
