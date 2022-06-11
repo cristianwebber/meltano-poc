@@ -1,0 +1,13 @@
+version: 1
+default_environment: dev
+project_id: ebfb9eb2-3997-490a-8176-00749c2eb995
+plugins:
+  extractors:
+  - name: tap-covid-19
+    namespace: tap_covid_19
+    pip_url: tap-covid-19
+    executable: tap-covid-19
+environments:
+- name: dev
+- name: staging
+- name: prod
