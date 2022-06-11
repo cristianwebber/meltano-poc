@@ -18,7 +18,7 @@ environments:
       - name: tap-gitlab
         config:
           projects: meltano/meltano
-          start_date: '2022-06-01T00:00:00Z'
+          start_date: '2022-05-01T00:00:00Z'
         select:
         - tags.*
       loaders:
